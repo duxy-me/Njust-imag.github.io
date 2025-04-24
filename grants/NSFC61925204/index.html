@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>国家自然科学基金“多媒体分析与检索”（61925204）成果介绍</title>
+    <title>国家自然科学基金"多媒体分析与检索"（61925204）成果介绍</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,11 +58,68 @@
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0,0,0,0.1);
         }
+        .application-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+            padding: 20px 0;
+        }
+
+        .project {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
+
+        .project h3 {
+            color: #880088;
+            margin-top: 0;
+            margin-bottom: 1.5em;
+            font-size: 1.3em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .project h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #880088;
+        }
+
+        .media-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5em;
+        }
+
+        .media-container img,
+        .media-container video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .media-container img:hover,
+        .media-container video:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 <div class="header">
-    <h1>国家自然科学基金“多媒体分析与检索”（61925204）<br>成果介绍</h1>
+    <h1>国家自然科学基金"多媒体分析与检索"（61925204）<br>成果介绍</h1>
 </div>
 
 <div class="container">
@@ -91,10 +148,46 @@
 
     <div id="application" class="section">
         <h2>应用情况</h2>
-        <ul>
-            <li>在智能安防中的应用</li>
-            <li>医疗影像分析的应用</li>
-        </ul>
+        <div class="application-projects">
+            <!-- 社会公共安全：社会维稳 -->
+            <div class="project">
+                <h3>社会公共安全：社会维稳</h3>
+                <div class="media-container">
+                    <img src="file:///F:/study/HTML/njust-0424/系统界面.png" alt="系统界面">
+                    <!-- 在这里添加相关的视频和图片 -->
+                </div>
+            </div>
+
+            <!-- 社会公共安全：智能监控 -->
+            <div class="project">
+                <h3>社会公共安全：智能监控</h3>
+                <div class="media-container">
+                    <img src="file:///F:/study/HTML/njust-0424/视频行为智能解析系统.png" alt="视频行为智能解析系统">
+                    <!-- 在这里添加相关的视频和图片 -->
+                </div>
+            </div>
+
+            <!-- 社会公共安全：高铁巡检 -->
+            <div class="project">
+                <h3>社会公共安全：高铁巡检</h3>
+                <div class="media-container">
+                    <img src="file:///F:/study/HTML/njust-0424/高铁巡检.png" alt="高铁巡检图像">
+                    <!-- 在这里添加相关的视频和图片 -->
+                </div>
+            </div>
+
+            <!-- 历史文化传承：历史影像及经典影视修复 -->
+            <div class="project">
+                <h3>历史文化传承：历史影像及经典影视修复</h3>
+                <div class="media-container">
+                    <img src="file:///F:/study/HTML/njust-0424/奥运会.png" alt="奥运会">
+                    <img src="file:///F:/study/HTML/njust-0424/西游记.png" alt="西游记">
+                    <video src="file:///F:/study/HTML/njust-0424/为了新中国.mp4" controls></video>
+                    <video src="file:///F:/study/HTML/njust-0424/报道.mp4" controls></video>
+                    <!-- 在这里添加相关的视频和图片 -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="reward" class="section">
