@@ -24,22 +24,36 @@
         }
         .tabs {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
+            justify-content: center;
+            margin: 30px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
         }
         .tab {
-            background-color: #ddd;
-            padding: 10px 20px;
+            background: transparent;
+            color: #666;
+            padding: 12px 30px;
             cursor: pointer;
-            border: 1px solid #ccc;
-            transition: background-color 0.3s;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            margin: 0 5px;
         }
         .tab:hover {
-            background-color: #bbb;
+            background: rgba(136, 0, 136, 0.1);
+            color: #880088;
         }
         .tab.active {
-            background-color: #880088;
+            background: #880088;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(136, 0, 136, 0.3);
         }
         .section {
             display: none;
@@ -60,17 +74,21 @@
         }
         .application-projects {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2em;
             padding: 20px 0;
         }
 
         .project {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+        }
+
+        .project.full-width {
+            grid-column: 1 / -1;
         }
 
         .project:hover {
@@ -84,36 +102,215 @@
             font-size: 1.3em;
             position: relative;
             padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
         }
 
         .project h3::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -2px;
             left: 0;
-            width: 50px;
-            height: 3px;
+            width: 80px;
+            height: 2px;
             background: #880088;
         }
 
         .media-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5em;
+            margin-bottom: 1em;
         }
 
-        .media-container img,
-        .media-container video {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .media-container.single {
+            grid-template-columns: 1fr;
+        }
+
+        .media-container.multiple {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .media-item {
+            position: relative;
+            overflow: hidden;
             border-radius: 8px;
+            background-color: #f8f8f8;
+            aspect-ratio: 16/9;
+        }
+
+        .media-item img,
+        .media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
 
-        .media-container img:hover,
-        .media-container video:hover {
+        .media-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px;
+            font-size: 0.9em;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover .media-caption {
+            transform: translateY(0);
+        }
+
+        .media-item:hover img,
+        .media-item:hover video {
             transform: scale(1.05);
+        }
+
+        /* 点击展开效果 */
+        .media-item.expanded {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .media-item.expanded img,
+        .media-item.expanded video {
+            max-width: 90%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .media-item.expanded .media-caption {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        /* 理论成果部分样式 */
+        #theory ul li {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            text-indent: 2em;
+            transition: transform 0.3s ease;
+        }
+
+        #theory ul li:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 科研奖励部分样式 */
+        #reward ul li {
+            background: white;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #880088;
+        }
+
+        #reward ul li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* 人才培养部分样式 */
+        #human h2 {
+            color: #880088;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #880088;
+            margin: 30px 0 20px;
+        }
+
+        #human ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0;
+        }
+
+        #human ul li {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        #human ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #human ul li ul {
+            display: block;
+            margin-top: 10px;
+        }
+
+        #human ul li ul li {
+            box-shadow: none;
+            padding: 5px 0;
+            margin-left: 20px;
+            border-radius: 0;
+        }
+
+        #human ul li ul li:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .highlight ul li {
+            border-left: 4px solid #880088;
+        }
+
+        /* 通用样式优化 */
+        .section {
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .section h2 {
+            color: #880088;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        /* 添加响应式设计 */
+        @media (max-width: 768px) {
+            .tabs {
+                flex-wrap: wrap;
+                border-radius: 15px;
+                padding: 5px;
+            }
+            
+            .tab {
+                padding: 10px 20px;
+                margin: 5px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -152,39 +349,77 @@
             <!-- 社会公共安全：社会维稳 -->
             <div class="project">
                 <h3>社会公共安全：社会维稳</h3>
-                <div class="media-container">
-                    <img src="file:///F:/study/HTML/njust-0424/系统界面.png" alt="系统界面">
-                    <!-- 在这里添加相关的视频和图片 -->
+                <div class="media-container single">
+                    <div class="media-item">
+                        <img src="/grants/NSFC61925204/系统界面.png" alt="系统界面">
+                        <div class="media-caption">智能维稳系统实时监控界面</div>
+                    </div>
                 </div>
             </div>
 
             <!-- 社会公共安全：智能监控 -->
             <div class="project">
                 <h3>社会公共安全：智能监控</h3>
-                <div class="media-container">
-                    <img src="file:///F:/study/HTML/njust-0424/视频行为智能解析系统.png" alt="视频行为智能解析系统">
-                    <!-- 在这里添加相关的视频和图片 -->
+                <div class="media-container single">
+                    <div class="media-item">
+                        <img src="/grants/NSFC61925204/视频行为智能解析系统.png" alt="视频行为智能解析系统">
+                        <div class="media-caption">视频行为智能分析系统展示</div>
+                    </div>
                 </div>
             </div>
 
             <!-- 社会公共安全：高铁巡检 -->
             <div class="project">
                 <h3>社会公共安全：高铁巡检</h3>
-                <div class="media-container">
-                    <img src="file:///F:/study/HTML/njust-0424/高铁巡检.png" alt="高铁巡检图像">
-                    <!-- 在这里添加相关的视频和图片 -->
+                <div class="media-container single">
+                    <div class="media-item">
+                        <img src="/grants/NSFC61925204/高铁巡检.png" alt="高铁巡检图像">
+                        <div class="media-caption">高铁智能巡检系统实景应用</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 历史文化传承：历史影像及经典影视修复 -->
+            <!-- 历史文化传承：历史影像及经典影视修复 - 奥运会 -->
             <div class="project">
                 <h3>历史文化传承：历史影像及经典影视修复</h3>
-                <div class="media-container">
-                    <img src="file:///F:/study/HTML/njust-0424/奥运会.png" alt="奥运会">
-                    <img src="file:///F:/study/HTML/njust-0424/西游记.png" alt="西游记">
-                    <video src="file:///F:/study/HTML/njust-0424/为了新中国.mp4" controls></video>
-                    <video src="file:///F:/study/HTML/njust-0424/报道.mp4" controls></video>
-                    <!-- 在这里添加相关的视频和图片 -->
+                <div class="media-container single">
+                    <div class="media-item">
+                        <img src="/grants/NSFC61925204/奥运会.png" alt="奥运会">
+                        <div class="media-caption">1952年奥运会历史影像修复</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史文化传承：历史影像及经典影视修复 - 西游记 -->
+            <div class="project">
+                <h3>历史文化传承：历史影像及经典影视修复</h3>
+                <div class="media-container single">
+                    <div class="media-item">
+                        <img src="/grants/NSFC61925204/西游记.png" alt="西游记">
+                        <div class="media-caption">《西游记》经典画面修复</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史文化传承：历史影像及经典影视修复 - 为了新中国 -->
+            <div class="project">
+                <h3>历史文化传承：历史影像及经典影视修复</h3>
+                <div class="media-container single">
+                    <div class="media-item">
+                        <video src="/grants/NSFC61925204/为了新中国.mp4" controls></video>
+                        <div class="media-caption">《为了新中国》修复片段</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史文化传承：历史影像及经典影视修复 - 报道 -->
+            <div class="project">
+                <h3>历史文化传承：历史影像及经典影视修复</h3>
+                <div class="media-container single">
+                    <div class="media-item">
+                        <video src="/grants/NSFC61925204/报道.mp4" controls></video>
+                        <div class="media-caption">媒体报道</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -260,15 +495,12 @@
 
 <script>
 function switchSection(sectionId) {
-    // 获取所有部分和标签
     const sections = document.querySelectorAll('.section');
     const tabs = document.querySelectorAll('.tab');
 
-    // 隐藏所有部分并移除激活状态的标签
     sections.forEach(section => section.classList.remove('active'));
     tabs.forEach(tab => tab.classList.remove('active'));
 
-    // 显示选定的部分并激活对应的标签
     document.getElementById(sectionId).classList.add('active');
     document.querySelector(`.tab[onclick="switchSection('${sectionId}')"]`).classList.add('active');
 }
