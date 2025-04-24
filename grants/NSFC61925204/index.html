@@ -243,27 +243,27 @@
         }
 
         #human ul {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: block;
             gap: 20px;
             padding: 0;
         }
 
         #human ul li {
+            width: 100%;
             background: white;
             padding: 20px;
+            margin-bottom: 15px;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
 
         #human ul li:hover {
-            transform: translateY(-5px);
+            transform: translateX(10px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         #human ul li ul {
-            display: block;
             margin-top: 10px;
         }
 
@@ -272,11 +272,6 @@
             padding: 5px 0;
             margin-left: 20px;
             border-radius: 0;
-        }
-
-        #human ul li ul li:hover {
-            transform: none;
-            box-shadow: none;
         }
 
         .highlight ul li {
